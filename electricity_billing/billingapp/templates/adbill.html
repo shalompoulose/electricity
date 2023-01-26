@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+        function amt(){
+        
+        var a=(document.getElementById("tunit").value);
+        var b=(document.getElementById("cpu").value);
+        parseInt(a);
+        parseInt(b);
+        var c=a*b;
+        document.getElementById("amount").value=c;
+    }
+    function unit(){
+        
+        var a=(document.getElementById("cread").value);
+        var b=(document.getElementById("pread").value);
+        parseInt(a);
+        parseInt(b);
+        var c=a-b;
+        document.getElementById("tunit").value=c;
+    }
+    function checkSelection() {
+      var selectedValue = document.getElementById("dropdown").value;
+      if (selectedValue == " ") {
+        alert("Please select a valid option. on connection type");
+        return false;
+      }
+      return true;
+    }
+  </script>
+    <script src="https://kit.fontawesome.com/09a72cf2e7.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">	<meta charset="utf-8">
+  <style>
+
+    label {
+    font-weight: 600;
+    color: #666;
+}
+body {
+  background: #f1f1f1;
+  margin-top:1000px;
+}
+.box8{
+  box-shadow: 0px 0px 5px 1px #999;
+}
+.mx-t3{
+  margin-top: -3rem;
+}
+#conv{
+margin-top:100px;
+}
+  </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+      <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+{% include 'navbar.html' %}
+
+</head>
+<body>
+<div class="container mt-3">
+  <form method="post">{% csrf_token %}
+      
+      <div class="row jumbotron box8" id="conv">
+        <div class="col-sm-12 mx-t3 mb-4">
+            {% include 'msg.html' %}
+          <h2 class="text-center text-info">add bill</h2>
+      </div>
+        <div class="col-sm-6 form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" name="fname" id="fname" placeholder="firstname" value={{ a.profile.user.first_name }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>Last name</label>
+          <input type="text" class="form-control" name="lname" id="lname" placeholder="last name." value={{ a.profile.user.last_name }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>username</label>
+          <input type="text" class="form-control" name="username" placeholder="username" value={{ a.profile.user.username }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>gender</label>
+          <input type="text" class="form-control" name="gender" placeholder="gender" value={{ a.profile.gender }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+        <label>mobile number</label>
+          <input type="text" class="form-control" name="mnumber" placeholder="mobile number" value={{ a.profile.mnumber }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>Address</label>
+          <input type="text" class="form-control" name="add" id="address" placeholder="address" value={{ a.profile.add }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>state</label>
+            <input type="text" class="form-control" name="state" placeholder="state" value={{ a.profile.state }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>city</label>
+            <input type="text" class="form-control" name="city" id="city" placeholder="city" value={{ a.profile.city }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>pin code</label>
+            <input type="text" class="form-control" name="pin" id="pin" placeholder="pin code" value={{ a.profile.pin }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>consumer number</label>
+            <input type="text" class="form-control" name="cnumber" id="cnumber"  value={{ a.cnumber }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>connection type</label>
+            <input type="text" class="form-control" name="ctype" id="ctype" value={{ a.ctype }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>load</label>
+            <input type="text" class="form-control" name="load" id="load" value={{ a.load }} readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>house number</label>
+            <input type="text" class="form-control" name="hnumber" id="hnumber" value={{ a.hnumber }} readonly>
+        </div>
+<!--      <div class="col-sm-4 form-group">-->
+<!--        <label for="cod">Country code</label>-->
+<!--        <select class="form-control browser-default custom-select">-->
+<!--          <option data-countryCode="US" value="1" selected>USA (+1)</option>-->
+<!--          <option data-countryCode="GB" value="44">UK (+44)</option>-->
+<!--        </select>-->
+<!--      </div>-->
+        <div class="col-sm-6 form-group">
+            <label>bill month</label>
+            <select class="form-control browser-default custom-select" name="bmonth" id="dropdown" onchange="checkselection()">
+                <option value=" " selected>...</option>
+                <option value="january">january</option>
+                <option value="february">february</option>
+                <option value="march">march</option>
+                <option value="april">april</option>
+                <option value="may">may</option>
+                <option value="june">june</option>
+                <option value="july">july</option>
+                <option value="august">august</option>
+                <option value="september">september</option>
+                <option value="october">october</option>
+                <option value="november">november</option>
+                <option value="december">december</option>
+            </select>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>current reading</label>
+            <input type="number" class="form-control" name="cread" id="cread" placeholder="current reading" required>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>previous reading</label>
+            <input class="form-control" name="pread" id="pread" placeholder="previous reading" required>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>total unit</label>
+            <input class="form-control" name="tunit" id="tunit" onclick="unit()" readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>charges per unit</label>
+            <input class="form-control" name="cpu" id="cpu" placeholder="charges per unit" required>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>amount</label>
+            <input type="number" class="form-control" name="amount" id="amount" onclick="amt()" readonly>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>due date</label>
+            <input type="date" class="form-control" name="ddate" id="ddate">
+        </div>
+        <div class="col-sm-12 form-group mb-0">
+          <input type="submit" class="btn btn-primary float-right" value="submit" onclick="return checkSelection()">
+        </div>
+
+    </div>
+  </form>
+</div>
+</body>
+</html>

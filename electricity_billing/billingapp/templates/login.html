@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">{% csrf_token %}
+  <input type="text" name="cnumber" placeholder="enter your consumer number" maxlength="11">
+  <input type="number" name="number" placeholder="enter the phone number">
+  <button>login</button>
+
+</form>
+</body>
+</html>

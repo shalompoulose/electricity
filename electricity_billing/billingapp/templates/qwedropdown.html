@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form method="post">{% csrf_token %}
+    <label>Select a category:</label>
+    <select id="category-select">
+      {% for i in a %}
+      <option  value="{{ i.user.email }}">{{ i.user.email }}</option>
+      {% endfor %}
+    </select>
+    <button onclick="fun()">submit</button>
+    <div>
+      <input type="text" id="product-name" readonly>
+    </div>
+    
+    <div id="fname">
+      <input type="text" readonly>
+    </div>
+    <div id="product-description">
+      <input type="text" readonly>
+    </div>
+    <!-- <script src="{% static 'assets/js/dropdown.js' %}"></script>
+    -->
+  </form>
+
+  <script>
+    function fun()
+    {
+    var select = document.getElementById("category-select").value;
+    {% for i in a %}
+    if('{{i.user.email}}' == select){
+      // document.write('{{i.user.email}}');
+      document.getElementById("fname").innerHTML='{{i.user.email}}';
+      
+    }
+    {% endfor%}
+    }
+  </script>
+  </body>
+</html>
+

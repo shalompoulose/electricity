@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    function card(){
+
+        var a=(document.getElementById("cdnumber").value);
+        l=a.length;
+        if(l==4 || l==9 || l==14)
+        {
+        c=a + "-" ;
+        document.getElementById("cdnumber").value=c;
+        }
+        if(l>19)
+        {
+        alert("enter a valid card number")
+        document.getElementById("cdnumber").value="";
+        }
+    }
+
+    function month(){
+
+        var a=(document.getElementById("edate").value);
+        l=a.length;
+        if(l==2)
+        {
+        c=a + "/" ;
+        document.getElementById("edate").value=c;
+        }
+    }
+  </script>
+    <script src="https://kit.fontawesome.com/09a72cf2e7.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">	<meta charset="utf-8">
+  <style>
+
+    label {
+    font-weight: 600;
+    color: #666;
+}
+.btn{
+    margin-top:25px;
+    margin-left:120px;
+}
+body {
+  background: #f1f1f1;
+  margin-top:1px;
+  height: 500px;
+}
+.box8{
+  box-shadow: 0px 0px 5px 1px #999;
+}
+.mx-t3{
+  margin-top: -3rem;
+}
+#conv{
+margin-top:150px;
+margin-left:400px;
+margin-right:400px;
+height: 400px;
+}
+
+  </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+      <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+{% include 'navbar.html' %}
+
+</head>
+<body>
+<div class="container mt-3">
+  <form method="post">{% csrf_token %}
+      
+      <div class="row jumbotron box8" id="conv">
+        <div class="col-sm-12 mx-t3 mb-4">
+            {% include 'msg.html' %}
+          <h2 class="text-center text-info">payment details</h2>
+      </div>
+        <div class="col-sm-12 form-group">
+          <label>card number</label>
+          <input type="text" class="form-control" name="cdnumber" id="cdnumber" oninput="card()" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>expiry date</label>
+          <input type="text" class="form-control" name="edate" id="edate" oninput="month()" placeholder="MM/YY" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>cvv</label>
+          <input type="text" class="form-control" name="cvv" placeholder="xxx" required>
+        </div>
+        <div class="col-sm-12 form-group">
+          <label>full name</label>
+          <input type="text" class="form-control" name="cname" placeholder="cname" required>
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>amount</label>
+            <input type="text" class="form-control" name="amount" value="{{a.amount}}" readonly>
+          </div>
+        <div class="col-sm-6 form-group">
+          <input type="submit" class="btn btn-primary float-right" src="http://127.0.0.1:8000/billingapp/payment/{{a.id}}" value="submit">
+        </div>
+
+    </div>
+  </form>
+</div>
+</body>
+</html>

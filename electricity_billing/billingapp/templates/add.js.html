@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function fact()
+        {
+            var f=1,i=1;
+            var x=parseInt(document.getElementById("d").value);
+            document.write(x)
+            do
+            {
+                f=f*i;
+                i++;
+            }while(i<=x)
+            document.write("factorial="+f)
+        }
+
+        function rev()
+        {
+            var x=document.getElementById("r").value;
+            var n="";
+            for(i=x.length-1;i>=0;i--)
+            {
+                n=n+x[i];
+            }
+            document.write("reverse="+n)
+        }
+        function ser(){
+            y=parseInt(document.getElementById("s").value);
+            document.write("series<br>")
+            for(i=50;i<=y;i=i+50)
+            {
+
+                document.write(i)
+                document.write("<br>")
+            }
+        }
+        function sq()
+        {
+            document.write("square root<br>")
+            for(i=1;i<=10;i++)
+            {
+                document.write("number="+i)
+                document.write("\t")
+                s=Math.sqrt(i);
+                document.write("square="+s)
+                document.write("<br>")
+            }
+        }
+        function su(){
+            var sum=0;
+            var b=document.getElementById("t").value;
+            while (b != 0) {
+                sum = sum + b % 10;
+                b = parseInt(b / 10);
+            }
+            // return (sum)
+            document.write("sum="+sum)
+        }
+
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <input type="text" id="d" placeholder="factorial">
+    <button onclick="fact()">click</button>
+    <input type="text" id="r" placeholder="reverse">
+    <button onclick="rev()">click</button>
+    <input type="text" id="s" placeholder="series">
+    <button onclick="ser()">series</button><br>
+
+    <button onclick="sq()">square root</button> -->
+
+
+    <input type="text" id="t" placeholder="sum">
+    <button onclick="su()">click</button>
+
+</body>
+</html>

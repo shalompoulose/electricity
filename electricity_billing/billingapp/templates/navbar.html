@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <header id="header" class="fixed-top header-transparent">
+    <div class="container d-flex align-items-center justify-content-between position-relative">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="index.html"><span>E-BILL</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="{% static 'assets/img/logo.png' %}" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="http://127.0.0.1:8000/billingapp/adlogin/">DASHBOARD</a></li>
+          <li class="dropdown"><a href="#"><span>CUSTOMER</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="http://127.0.0.1:8000/billingapp/addmcus/">ADD CUSTOMER</a></li>
+              <li><a href="http://127.0.0.1:8000/billingapp/cviews/">VIEW CUSTOMER</a></li>
+
+
+            </ul>
+          </li>
+
+          <li class="dropdown"><a href="#"><span>CONNECTION</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="http://127.0.0.1:8000/billingapp/adcon/">ADD CONNECTION</a></li>
+              <li><a href="http://127.0.0.1:8000/billingapp/conviews/">VIEW CONNECTION</a></li>
+
+
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>BILL</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="http://127.0.0.1:8000/billingapp/adb/">ADD BILL</a></li>
+              <li><a href="http://127.0.0.1:8000/billingapp/billv/">VIEW BILL</a></li>
+
+
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/billingapp/cfeed">FEEDBACKS</a></li>
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/billingapp/index">LOGOUT</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <label for="email">email:</label>
+        <select name="email">
+            {% for i in obj1 %}
+            <option  value="{{ i.user.email }}">{{ i.user.email }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity">
+        <br>
+        <label for="total_price">Total Price:</label>
+        <input type="number" name="total_price">
+        <br><br>
+        <input type="submit" value="Create Bill">
+    </form>
+</body>
+</html>
