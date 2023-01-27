@@ -437,5 +437,6 @@ def hbill(request,id):
         action="pay now"
         return render(request,'hbill.html',{'a':a,'action':action})
 
-
-
+def profile(request,id):
+    a = conmodel.objects.filter(profile__user__id=id).first()
+    return render(request, 'profile.html', {'a': a})

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    img {
+  border-radius: 50%;
+}
+  </style>
   {% load static %}
     <meta charset="UTF-8">
     <title>Title</title>
@@ -18,8 +23,8 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="http://127.0.0.1:8000/billingapp/adindex/{{a.id}}">DASHBOARD</a></li>
-          <li><a href="#"><span>PROFILE</span></a>
-          </li>
+
+
 
           <li class="dropdown"><a href="#"><span>BILL</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -36,6 +41,10 @@
 
 
             </ul>
+              <li><a href="http://127.0.0.1:8000/billingapp/profile/{{a.id}}">
+              <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="Avatar" style="height:50px;width:50px;">
+              <span>PROFILE</span></a></li>
+
           </li>
           <li><a class="nav-link scrollto" href="#contact">LOGOUT</a></li>
         </ul>

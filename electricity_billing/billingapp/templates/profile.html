@@ -1,10 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+      <style>
+  th{
+  border-width:"10px";
+  }
+    .vtbl{
+    margin-top:150px;
+    margin-right:100px;
+    margin-bottom:150px;
+
+    }
+  </style>
+  {% load static %}
+    <link href="{% static 'assets/fonts/DancingScript-VariableFont_wght.ttf' %}" rel="stylesheet" type="text/css">
+
+    <script src="https://kit.fontawesome.com/09a72cf2e7.js" crossorigin="anonymous"></script>
+    <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{%static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/pay.css' %}" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
+<FORM>
+<div class="vtbl">
+{% include 'custnavbar.html' %}
+    <div class="main">
+        <h2 style="text-align:center;">PROFILE</h2>
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <div>
+                        <H3><U>PERSONAL DETAILS</U><i class="fa-sharp fa-solid fa-pen-to-square" STYLE="font-size:28px;margin-left:100px;"></i></H3></div></div>
+                    <table><tbody>
 
+                        <tr>
+                            <td>FIRST NAME</td>
+                            <td>:</td>
+                            <td>{{a.profile.user.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>LAST NAME</td>
+                            <td>:</td>
+                            <td>{{a.profile.user.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td>{{a.profile.user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>USERNAME</td>
+                            <td>:</td>
+                            <td>{{a.profile.user.username}}</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>:</td>
+                            <td>{{a.profile.add}}</td>
+                        </tr>
+                        <tr>
+                            <td>GENDER</td>
+                            <td>:</td>
+                            <td>{{a.profile.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td>MOBILE NUMBER</td>
+                            <td>:</td>
+                            <td>{{a.profile.mnumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>CITY</td>
+                            <td>:</td>
+                            <td>{{a.profile.city}}</td>
+                        </tr>
+                        <tr>
+                            <td>STATE</td>
+                            <td>:</td>
+                            <td>{{a.profile.state}}</td>
+                        </tr>
+                        <tr>
+                            <td>PIN CODE</td>
+                            <td>:</td>
+                            <td>{{a.profile.pin}}</td>
+                        </tr>
+                    </tbody></table>
+                <div>
+                    <div>
+                        <H3><U>CONNNECTION DETAILS</U><i class="fa-sharp fa-solid fa-pen-to-square" STYLE="font-size:28px;margin-left:100px;"></i></H3></div></div>
+                    <table><tbody>
+                    <tr>
+                            <td>CONSUMER NUMBER</td>
+                            <td>:</td>
+                            <td>{{a.cnumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>CONNECTION TYPE</td>
+                            <td>:</td>
+                            <td>{{a.ctype}}</td>
+                        </tr>
+                        <tr>
+                            <td>OCCUPATION</td>
+                            <td>:</td>
+                            <td>{{a.occ}}</td>
+                        </tr>
+                        <tr>
+                            <td>LOAD</td>
+                            <td>:</td>
+                            <td>{{a.load}}</td>
+                        </tr>
+                        <tr>
+                            <td>HOUSE NUMBER</td>
+                            <td>:</td>
+                            <td>{{a.hnumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>CONNECTION DATE</td>
+                            <td>:</td>
+                            <td>{{a.cdate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</table>
+
+</FORM>
 </body>
 </html>
