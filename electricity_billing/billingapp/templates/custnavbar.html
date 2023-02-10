@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://kit.fontawesome.com/09a72cf2e7.js" crossorigin="anonymous"></script>
   <style>
     img {
   border-radius: 50%;
@@ -22,31 +23,40 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="http://127.0.0.1:8000/billingapp/adindex/{{a.id}}">DASHBOARD</a></li>
+          <li><a class="nav-link scrollto active" href="http://127.0.0.1:8000/billingapp/cuindex/{{c.id}}">DASHBOARD</a></li>
 
 
 
           <li class="dropdown"><a href="#"><span>BILL</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="http://127.0.0.1:8000/billingapp/billpay/{{a.id}}">PAY BILL</a></li>
-              <li><a href="http://127.0.0.1:8000/billingapp/hbill/{{a.id}}">BILL HISTORY</a></li>
+              <li><a href="http://127.0.0.1:8000/billingapp/billpay/{{c.id}}">PAY BILL</a></li>
+              <li><a href="http://127.0.0.1:8000/billingapp/hbill/{{c.id}}">BILL HISTORY</a></li>
 
 
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>COMPLAINTS/FEEDBACK</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="http://127.0.0.1:8000/billingapp/clogin/{{a.id}}">ADD COMPLAINTS</a></li>
-              <li><a href="http://127.0.0.1:8000/billingapp/alogin/{{a.id}}">VIEW PREVIOUS COMPLAINTS</a></li>
+              <li class="dropdown"><a href="#">COMPLAINTS<i class="bi bi-chevron-right"></a></i>
+              <ul>
+                <li><a href="http://127.0.0.1:8000/billingapp/comp/{{c.id}}">ADD COMPLAINTS</a></li>
+                <li><a href="http://127.0.0.1:8000/billingapp/vcomp/{{c.id}}">VIEW PREVIOUS COMPLAINTS</a></li>
+              </ul></li>
+              <li class="dropdown"><a href="#"><span>FEEDBACK</span><i class="bi bi-chevron-right"></a></i>
+              <ul>
+                <li><a href="http://127.0.0.1:8000/billingapp/cfeed/{{c.id}}">ADD FEEDBACK</a></li>
+                <li><a href="http://127.0.0.1:8000/billingapp/vfeed/{{c.id}}">VIEW PREVIOUS FEEDBACK</a></li>
+              </ul></li>
 
 
-            </ul>
-              <li><a href="http://127.0.0.1:8000/billingapp/profile/{{a.id}}">
-              <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="Avatar" style="height:50px;width:50px;">
+
+            </ul></li>
+              <li><a href="http://127.0.0.1:8000/billingapp/profile/{{c.id}}">
               <span>PROFILE</span></a></li>
+              <i class="fa-solid fa-user" style="font-size:30px;color:white;"></i>
 
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">LOGOUT</a></li>
+          </li>&nbsp;&nbsp;&nbsp;
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/billingapp/index/">LOGOUT</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

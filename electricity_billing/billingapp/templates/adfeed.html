@@ -8,11 +8,12 @@
     .vtbl{
     margin-top:150px;
     margin-left:180px;
+    margin-right:180px;
 
     }
   </style>
   {% load static %}
-      <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
     <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
     <script src="{%static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{%static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
@@ -32,33 +33,26 @@
 <div class="vtbl">
 {% include 'navbar.html' %}
 {% include 'msg.html' %}
-<table style='border-width:"50px";border:solid'>
-  <tr>
-    <th style="border-width:'10px';">id</th>
-    <th>fname</th>
-    <th>lname</th>
-    <th>username</th>
-    <th>email</th>
-    <th>mobile number</th>
-    <th>gender</th>
-    <th>address</th>
-    <th>city</th>
-    <th>state</th>
-    <th>pin code</th>
+<table style='border-width:"50px";border-color:red;border:solid'>
+  <tr style="border-width:'10px';border-color:red;border:solid">
+    <th style="border-width: 3px;">fname</th>
+    <th style="border-width: 3px;">lname</th>
+    <th style="border-width: 3px;">email</th>
+    <th style="border-width: 3px;">mobile number</th>
+    <th style="border-width: 3px;">cnumber</th>
+    <th style="border-width: 3px;">feedback</th>
+    <th style="border-width: 3px;">date</th>
+
   </tr>
   {% for i in a %}
   <tr>
-    <td>{{i.id}}</td>
-    <td>{{i.user.first_name}}</td>
-    <td>{{i.user.last_name}}</td>
-    <td>{{i.user.username}}</td>
-    <td>{{i.user.email}}</td>
-    <td>{{i.mnumber}}</td>
-    <td>{{i.gender}}</td>
-    <td>{{i.add}}</td>
-    <td>{{i.city}}</td>
-    <td>{{i.state}}</td>
-    <td>{{i.pin}}</td>
+    <td style="border-width: 3px;">{{i.conmodel.profile.user.first_name}}</td>
+    <td style="border-width: 3px;">{{i.conmodel.profile.user.last_name}}</td>
+    <td style="border-width: 3px;">{{i.conmodel.profile.user.email}}</td>
+    <td style="border-width: 3px;">{{i.conmodel.profile.mnumber}}</td>
+    <td style="border-width: 3px;">{{i.conmodel.cnumber}}</td>
+      <td style="border-width: 3px;">{{i.feed}}</td>
+      <td style="border-width: 3px;">{{i.date}}</td>
   </tr>
   {% endfor %}
 

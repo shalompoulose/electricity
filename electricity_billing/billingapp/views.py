@@ -2,7 +2,7 @@ import uuid
 import time
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse
@@ -16,13 +16,15 @@ def adindex(request):
     return render(request, 'adminindex.html', {'a': a})
 
 
-def cuindex(request):
-    return render(request, 'custindex.html')
+def cuindex(request,id):
+    c=Profile.objects.filter(id=id).first()
+    return render(request,'custindex.html',{'c':c})
 
 
 # Create your views here.
 
 def index(request):
+    logout(request)
     return render(request, 'index.html')
 
 
@@ -45,7 +47,7 @@ def alogin(request):
             # return HttpResponse('incorrect credentials')
             return redirect(alogin)
     else:
-        return render(request, 'adlogin.html')
+        return render(request, 'authenticate/adlogin.html')
 
 
 # def cregis(request):
@@ -111,7 +113,7 @@ def clogin(request):
         if not (User.objects.filter(username=username)):
             messages.success(request, "incorrect username")
             return redirect(clogin)
-        user=User.objects.get(username=username)
+        user = User.objects.get(username=username)
         if not (conmodel.objects.filter(cnumber=cnumber)):
             messages.success(request, "incorrect username/cnumber")
             return redirect(clogin)
@@ -122,11 +124,11 @@ def clogin(request):
         token = str(uuid.uuid4())
         cm.profile.auth_token = token
         if cm.profile.is_verified:
-            messages.success(request,"this account is already created kindly login")
+            messages.success(request, "this account is already created kindly login")
             return redirect(clogin)
         else:
             cm.profile.save()
-            sendmail(fn, em, token)
+            # sendmail(fn, em, token)
             messages.success(request, 'check your inbox for email verification')
             return redirect(clogin)
     else:
@@ -158,7 +160,7 @@ def verify(request, token):
     else:
         return HttpResponse("errrrrorrrrrr")
 
-@login_required
+
 def custlogin(request):
     if request.method == "POST":
         un = request.POST.get('username')
@@ -176,10 +178,11 @@ def custlogin(request):
         if user is None:
             messages.success(request, "wrong password or username")
             return redirect(custlogin)
-        a=user
-        print(a)
-        return render(request, 'custindex.html', {'a': a})
-    return render(request, 'logincust.html')
+        c = profile_obj
+        print(c)
+        login(request, user)
+        return render(request, 'custindex.html', {'c': c})
+    return render(request, 'authenticate/logincust.html')
 
 
 def passw(request, id):
@@ -292,15 +295,6 @@ def conviews(request):
 #         return render(request,'work1.html',{'a':a})
 
 
-def cfeed(request):
-    if request.method == "POST":
-        cnumber = request.POST.get('cnumber')
-        email = request.POST.get('email')
-        feed = request.POST.get('feed')
-        cfeed_obj = feedb(cnumber=cnumber, email=email, feed=feed)
-        cfeed_obj.save()
-    return render(request, 'feedback.html')
-
 def adb(request):
     if request.method == "POST":
         cnumber = request.POST.get('cnumber')
@@ -317,6 +311,7 @@ def adb(request):
     else:
         a = conmodel.objects.all()
         return render(request, 'adb.html', {'a': a})
+
 
 def addbill(request, obj2):
     obj1 = obj2
@@ -346,22 +341,24 @@ def billv(request):
     return render(request, 'viewbill.html', {'a': a})
 
 
-
+@login_required(login_url="/alogin/")
 def custindex(request):
     a = request.user
+    b = User.objects.filter(id=id).first()
     print(a)
-    return render(request, 'custindex.html', {'a': a})
+    return render(request, 'custindex.html', {'a': a, 'c': c})
 
 
-def qpay(request,id):
-    a = Bill.objects.filter(connmodel__profile__user__id=id).first()
-    if request.method=="POST":
-        acc=request.POST.get('cdnumber')
+@login_required(login_url="/alogin/")
+def qpay(request, id):
+    a = Bill.objects.filter(connmodel__profile__id=id).first()
+    if request.method == "POST":
+        acc = request.POST.get('cdnumber')
         ed = request.POST.get('edate')
-        cvv=request.POST.get('cvv')
-        cn=request.POST.get('cname')
+        cvv = request.POST.get('cvv')
+        cn = request.POST.get('cname')
         print(1)
-
+        c = User.objects.filter(id=id).first()
 
         a.pstatus = "paid"
         a.save()
@@ -370,73 +367,194 @@ def qpay(request,id):
         obj.save()
         url = reverse('cbillv', kwargs={'id': id})
         return redirect(url)
-    return render(request,'pay.html',{'a':a})
+    return render(request, 'pay.html', {'a': a})
 
 
-def cbillv(request,id):
-    a = Bill.objects.filter(pstatus='not paid',connmodel__profile__user__id=id).first()
+@login_required(login_url="/alogin/")
+def cbillv(request, id):
+    a = Bill.objects.filter(pstatus='not 45paid', connmodel__profile__id=id).first()
     print(a)
+    c = User.objects.filter(id=id).first()
     if a is None:
         print('aqwertyujy')
         messages.success(request, "nothing to show")
-        return render(request, 'cbillview.html')
+        return render(request, 'cbillview.html', {'c': c})
     else:
 
         print(a)
-        action="pay now"
-        return render(request,'cbillview.html',{'a':a,'action':action})
+        action = "pay now"
+        return render(request, 'cbillview.html', {'a': a, 'c': c, 'action': action})
 
 
-def billpay(request,id):
-
-    a = Bill.objects.filter(pstatus='not paid',connmodel__profile__user__id=id).first()
-    b=Bill.objects.filter(connmodel__profile__user__id=id).first()
+@login_required(login_url="/alogin/")
+def billpay(request, id):
+    a = Bill.objects.filter(pstatus='not paid', connmodel__profile__id=id).first()
+    b = Bill.objects.filter(connmodel__profile__id=id).first()
+    c = User.objects.filter(id=id).first()
     print(a)
     if a is None:
 
         messages.success(request, "nothing to show")
-        a=b
+        a = b
 
-        return render(request, 'cbillview.html',{'a':a})
+        return render(request, 'cbillview.html', {'a': a, 'c': c})
     else:
 
         print(a)
-        action="pay now"
-        return render(request,'cbillview.html',{'a':a,'action':action})
+        action = "pay now"
+        return render(request, 'cbillview.html', {'a': a, 'c': c, 'action': action})
 
 
-def payment(request,id):
-    if request.method=="POST":
-        acc=request.POST.get('cdnumber')
+@login_required(login_url="/alogin/")
+def payment(request, id):
+    if request.method == "POST":
+        acc = request.POST.get('cdnumber')
         ed = request.POST.get('edate')
-        cvv=request.POST.get('cvv')
-        cn=request.POST.get('cname')
+        cvv = request.POST.get('cvv')
+        cn = request.POST.get('cname')
         print(1)
 
-        a = Bill.objects.filter(connmodel__profile__user__id=id).first()
-        a.pstatus="paid"
+        a = Bill.objects.filter(connmodel__profile__id=id).first()
+        a.pstatus = "paid"
         a.save()
         print(2)
-        obj=Payment(bill=a,cdnumber=acc,edate=ed,cvv=cvv,cname=cn)
+        obj = Payment(bill=a, cdnumber=acc, edate=ed, cvv=cvv, cname=cn)
         obj.save()
         url = reverse('cbillv', kwargs={'id': id})
         return redirect(url)
 
 
-
-def hbill(request,id):
+@login_required(login_url="/alogin/")
+def hbill(request, id):
     # id=request.user.id
     # print(3)
-    a = Bill.objects.filter(pstatus='paid',connmodel__profile__user__id=id).first()
-    b=Bill.objects.filter(connmodel__profile__user__id=id).first()
+    a = Bill.objects.filter(pstatus='paid', connmodel__profile__id=id).first()
+    b = Bill.objects.filter(connmodel__profile__id=id).first()
+    c = User.objects.filter(id=id).first()
     if a is None:
-        messages.success(request,"nothing to show")
-        a=b
-        return render(request, 'hbill.html',{'a':a})
+        messages.success(request, "nothing to show")
+        a = b
+        return render(request, 'hbill.html', {'a': a, 'c': c})
     else:
-        action="pay now"
-        return render(request,'hbill.html',{'a':a,'action':action})
+        action = "pay now"
+        return render(request, 'hbill.html', {'a': a, 'c': c, 'action': action})
 
-def profile(request,id):
-    a = conmodel.objects.filter(profile__user__id=id).first()
-    return render(request, 'profile.html', {'a': a})
+
+@login_required(login_url="/alogin/")
+def profile(request, id):
+    a = conmodel.objects.filter(profile__id=id).first()
+    c = User.objects.filter(id=id).first()
+
+    li=[]
+    path=a.profile.img
+    print(path)
+    l=(str(path).split("/")[-1])
+    list=l
+    print(l)
+    return render(request, 'profile.html', {'a': a,'list':list, 'c': c})
+
+@login_required(login_url="/alogin/")
+def comp(request, id):
+    a = conmodel.objects.filter(profile__id=id).first()
+    c = User.objects.filter(id=id).first()
+    b=complaint.objects.filter(conmodel__profile__id=id)
+    if request.method == "POST":
+        comp = request.POST.get('comp')
+        obj = complaint(conmodel=a, comp=comp)
+        obj.save()
+        messages.success(request, 'complaint registered successfully')
+        url=reverse('vcomp', kwargs={'id': id})
+        return redirect(url)
+    else:
+        return render(request, 'addcomp.html', {'a': a, 'c': c})
+
+
+def vcomp(request,id):
+    c = User.objects.filter(id=id).first()
+    # a=[]
+    # for i in complaint:
+    b=complaint.objects.filter(conmodel__profile__id=id)
+    print(b)
+    return render(request,'vpcomp.html',{'b':b,'c':c})
+
+
+@login_required(login_url="/alogin/")
+def cfeed(request,id):
+    a = conmodel.objects.filter(profile__id=id).first()
+    c = User.objects.filter(id=id).first()
+    b=feedb.objects.filter(conmodel__profile__id=id)
+    if request.method == "POST":
+        feed = request.POST.get('feed')
+        obj = feedb(conmodel=a, feed=feed)
+        obj.save()
+        messages.success(request, 'feedback registered successfully')
+        url=reverse('vfeed', kwargs={'id': id})
+        return redirect(url)
+    else:
+        return render(request, 'addfeed.html', {'a': a, 'c': c})
+
+
+def vfeed(request,id):
+    c = User.objects.filter(id=id).first()
+    # a=[]
+    # for i in complaint:
+    b=feedb.objects.filter(conmodel__profile__id=id)
+    if b:
+
+        print(b)
+        return render(request,'vpfeed.html',{'b':b,'c':c})
+    else:
+        return render(request, 'vpfeed.html', {'b': b, 'c': c})
+
+
+def adfeed(request):
+    a=feedb.objects.all()
+    return render(request,'adfeed.html',{'a':a})
+def adcomp(request):
+    a=complaint.objects.all()
+    return render(request,'adcomp.html',{'a':a})
+
+
+def edphoto(request,id):
+    a=conmodel.objects.filter(profile__id=id).first()
+    c=User.objects.filter(id=id).first()
+    if request.method=="POST":
+        b=prof(request.POST,request.FILES)
+        if b.is_valid():
+            im=b.cleaned_data['img']
+            a.profile.img=im
+            a.profile.save()
+            print(a.profile.img)
+            messages.success(request,"profile picture edited successfully")
+            url = reverse('profile', kwargs={'id': id})
+            return redirect(url)
+    return render(request,'editphoto.html',{'a':a,'c':c})
+
+
+
+
+def edpes(request, id):
+    a = Profile.objects.filter(id=id).first()
+    print(a)
+    c = User.objects.filter(id=id).first()
+    print(c)
+    profile_obj = Profile.objects.filter(id=id).first()
+    print(profile_obj)
+    # print(user.id)
+    if request.method == "POST":
+        profile_obj.user.first_name = request.POST.get('fname')
+        profile_obj.user.last_name = request.POST.get('lname')
+        profile_obj.user.email = request.POST.get('email')
+        profile_obj.user.username = request.POST.get('username')
+        profile_obj.add = request.POST.get('add')
+        profile_obj.gender = request.POST.get('gender')
+        profile_obj.mnumber = request.POST.get('mnumber')
+        profile_obj.city = request.POST.get('city')
+        profile_obj.state = request.POST.get('state')
+        profile_obj.pin = request.POST.get('pin')
+        profile_obj.user.save()
+        profile_obj.save()
+        url = reverse('profile', kwargs={'id': id})
+        return redirect(url)
+    else:
+        return render(request, 'edpes.html', {'a': a})

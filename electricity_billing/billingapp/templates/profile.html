@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        function view()
+        {
+
+        }
+    </script>
       <style>
   th{
   border-width:"10px";
@@ -10,6 +16,12 @@
     margin-right:100px;
     margin-bottom:150px;
 
+    }
+    @media only screen and (max-width:400px){
+    .vtbl,.a{
+    width:99%;
+    height:50%;
+    }
     }
   </style>
   {% load static %}
@@ -42,8 +54,11 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <div>
-                        <H3><U>PERSONAL DETAILS</U><i class="fa-sharp fa-solid fa-pen-to-square" STYLE="font-size:28px;margin-left:100px;"></i></H3></div></div>
+
+                    <div style="text-align:center"><a href="http://127.0.0.1:8000/billingapp/edphoto/{{a.id}}"><img src="/static/assets/img/profile/{{list}}" alt="no photo" style="height:150px;width:150px;"><br><i class="fa-sharp fa-solid fa-pen-to-square" STYLE="font-size:28px;margin-left:100px;"></i></a>
+                    </div><div class="a col-xs-6.col-sm-4">
+
+                        <br><br><H3 style="text-align:center;"><U>PERSONAL DETAILS</U><a href="http://127.0.0.1:8000/billingapp/edpes/{{a.id}}"><i class="fa-sharp fa-solid fa-pen-to-square" STYLE="font-size:28px;margin-left:100px;"></i></a></H3>
                     <table><tbody>
 
                         <tr>
@@ -99,7 +114,7 @@
                     </tbody></table>
                 <div>
                     <div>
-                        <H3><U>CONNNECTION DETAILS</U><i class="fa-sharp fa-solid fa-pen-to-square" STYLE="font-size:28px;margin-left:100px;"></i></H3></div></div>
+                        <H3><U>CONNNECTION DETAILS</U></H3></div></div>
                     <table><tbody>
                     <tr>
                             <td>CONSUMER NUMBER</td>
@@ -131,17 +146,18 @@
                             <td>:</td>
                             <td>{{a.cdate}}</td>
                         </tr>
+
                     </tbody>
+
                 </table>
+
             </div>
+
         </div>
     </div>
 </div>
-
-
-
-</table>
-
+    </div>
+</div><button onclick="window.print()">print</button>
 </FORM>
 </body>
 </html>

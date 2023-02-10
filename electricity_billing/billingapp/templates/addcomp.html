@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">{% csrf_token %}
+<INPUT TYPE="TEXT" VALUE="{{a.profile.user.first_name}}">
+<input type="text" value="{{a.profile.user.last_name}}">
+<input type="text" value="{{a.profile.user.username}}">
+<input type="text" value="{{a.cnumber}}">
+    <textarea name="comp" placeholder="enter your complaints here"></textarea>
+  <input type="submit" value="send">
+</form>
+</body>
+</html>

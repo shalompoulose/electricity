@@ -5,8 +5,8 @@ from django.db import models
 # Create your models here.
 
 class alog(models.Model):
-    username = models.CharField(max_length=50, default="admin")
-    password = models.CharField(max_length=50, default="admin")
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
 
 
 class Profile(models.Model):
@@ -14,6 +14,7 @@ class Profile(models.Model):
     auth_token = models.CharField(max_length=100)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateField(auto_now_add=True)
+    img=models.FileField(upload_to='billingapp/static/assets/img/profile')
     mnumber = models.CharField(max_length=50)
     gender=models.CharField(max_length=50)
     add=models.CharField(max_length=100)
@@ -32,9 +33,9 @@ class conmodel(models.Model):
     des = models.CharField(max_length=100)
 
 class feedb(models.Model):
-    cnumber=models.CharField(max_length=50)
-    email=models.EmailField()
-    feed=models.CharField(max_length=100)
+    conmodel=models.ForeignKey(conmodel,on_delete=models.CASCADE)
+    feed=models.CharField(max_length=500)
+    date=models.DateTimeField(auto_now_add=True)
 
 class Bill(models.Model):
     connmodel=models.ForeignKey(conmodel, on_delete=models.CASCADE)
@@ -55,6 +56,11 @@ class Payment(models.Model):
     cvv=models.CharField(max_length=30)
     cname=models.CharField(max_length=50)
 
+
+class complaint(models.Model):
+    conmodel=models.ForeignKey(conmodel,on_delete=models.CASCADE)
+    comp=models.CharField(max_length=500)
+    date=models.DateTimeField(auto_now_add=True)
 
 
 
