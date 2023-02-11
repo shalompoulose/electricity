@@ -128,7 +128,7 @@ def clogin(request):
             return redirect(clogin)
         else:
             cm.profile.save()
-            # sendmail(fn, em, token)
+            sendmail(fn, em, token)
             messages.success(request, 'check your inbox for email verification')
             return redirect(clogin)
     else:
@@ -341,7 +341,7 @@ def billv(request):
     return render(request, 'viewbill.html', {'a': a})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def custindex(request):
     a = request.user
     b = User.objects.filter(id=id).first()
@@ -349,7 +349,7 @@ def custindex(request):
     return render(request, 'custindex.html', {'a': a, 'c': c})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def qpay(request, id):
     a = Bill.objects.filter(connmodel__profile__id=id).first()
     if request.method == "POST":
@@ -370,7 +370,7 @@ def qpay(request, id):
     return render(request, 'pay.html', {'a': a})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def cbillv(request, id):
     a = Bill.objects.filter(pstatus='not 45paid', connmodel__profile__id=id).first()
     print(a)
@@ -386,7 +386,7 @@ def cbillv(request, id):
         return render(request, 'cbillview.html', {'a': a, 'c': c, 'action': action})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def billpay(request, id):
     a = Bill.objects.filter(pstatus='not paid', connmodel__profile__id=id).first()
     b = Bill.objects.filter(connmodel__profile__id=id).first()
@@ -405,7 +405,7 @@ def billpay(request, id):
         return render(request, 'cbillview.html', {'a': a, 'c': c, 'action': action})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def payment(request, id):
     if request.method == "POST":
         acc = request.POST.get('cdnumber')
@@ -424,7 +424,7 @@ def payment(request, id):
         return redirect(url)
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def hbill(request, id):
     # id=request.user.id
     # print(3)
@@ -440,7 +440,7 @@ def hbill(request, id):
         return render(request, 'hbill.html', {'a': a, 'c': c, 'action': action})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def profile(request, id):
     a = conmodel.objects.filter(profile__id=id).first()
     c = User.objects.filter(id=id).first()
@@ -453,7 +453,7 @@ def profile(request, id):
     print(l)
     return render(request, 'profile.html', {'a': a,'list':list, 'c': c})
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def comp(request, id):
     a = conmodel.objects.filter(profile__id=id).first()
     c = User.objects.filter(id=id).first()
@@ -468,7 +468,7 @@ def comp(request, id):
     else:
         return render(request, 'addcomp.html', {'a': a, 'c': c})
 
-
+@login_required(login_url="/billingapp/custlogin/")
 def vcomp(request,id):
     c = User.objects.filter(id=id).first()
     # a=[]
@@ -478,7 +478,7 @@ def vcomp(request,id):
     return render(request,'vpcomp.html',{'b':b,'c':c})
 
 
-@login_required(login_url="/alogin/")
+@login_required(login_url="/billingapp/custlogin/")
 def cfeed(request,id):
     a = conmodel.objects.filter(profile__id=id).first()
     c = User.objects.filter(id=id).first()
@@ -493,7 +493,7 @@ def cfeed(request,id):
     else:
         return render(request, 'addfeed.html', {'a': a, 'c': c})
 
-
+@login_required(login_url="/billingapp/custlogin/")
 def vfeed(request,id):
     c = User.objects.filter(id=id).first()
     # a=[]
@@ -506,15 +506,16 @@ def vfeed(request,id):
     else:
         return render(request, 'vpfeed.html', {'b': b, 'c': c})
 
-
+@login_required(login_url="/billingapp/custlogin/")
 def adfeed(request):
     a=feedb.objects.all()
     return render(request,'adfeed.html',{'a':a})
+@login_required(login_url="/billingapp/custlogin/")
 def adcomp(request):
     a=complaint.objects.all()
     return render(request,'adcomp.html',{'a':a})
 
-
+@login_required(login_url="/billingapp/custlogin/")
 def edphoto(request,id):
     a=conmodel.objects.filter(profile__id=id).first()
     c=User.objects.filter(id=id).first()
@@ -532,7 +533,7 @@ def edphoto(request,id):
 
 
 
-
+@login_required(login_url="/billingapp/custlogin/")
 def edpes(request, id):
     a = Profile.objects.filter(id=id).first()
     print(a)

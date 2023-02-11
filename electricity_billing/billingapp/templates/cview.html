@@ -35,30 +35,30 @@
 <table style='border-width:"50px";border:solid'>
   <tr>
     <th style="border-width:'10px';">id</th>
-    <th>fname</th>
-    <th>lname</th>
-    <th>username</th>
-    <th>email</th>
-    <th>mobile number</th>
-    <th>gender</th>
-    <th>address</th>
-    <th>city</th>
-    <th>state</th>
-    <th>pin code</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>fname</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>lname</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>username</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>email</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>mobile number</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>gender</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>address</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>city</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>state</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>pin code</th>
   </tr>
   {% for i in a %}
   <tr>
-    <td>{{i.id}}</td>
-    <td>{{i.user.first_name}}</td>
-    <td>{{i.user.last_name}}</td>
-    <td>{{i.user.username}}</td>
-    <td>{{i.user.email}}</td>
-    <td>{{i.mnumber}}</td>
-    <td>{{i.gender}}</td>
-    <td>{{i.add}}</td>
-    <td>{{i.city}}</td>
-    <td>{{i.state}}</td>
-    <td>{{i.pin}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.id}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.user.first_name}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.user.last_name}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.user.username}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.user.email}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.mnumber}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.gender}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.add}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.city}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.state}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'>{{i.pin}}</td>
   </tr>
   {% endfor %}
 
