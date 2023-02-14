@@ -8,6 +8,7 @@
     .vtbl{
     margin-top:150px;
     margin-left:180px;
+    margin-right:100px;
 
     }
   </style>
@@ -26,10 +27,11 @@
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>connection list</title>
 </head>
 <body>
 <div class="vtbl">
+  <h3 style="text-align:center;"><b>connection list</b></h3>
 {% include 'navbar.html' %}
 {% include 'msg.html' %}
 <table style='border-width:"50px";border:solid'>
@@ -53,6 +55,7 @@
     <th style='border-width:"50px";border-color:red;border:solid'>house number</th>
 
     <th style='border-width:"50px";border-color:red;border:solid'>description</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>ACTION</th>
 
   </tr>
   {% for i in a %}
@@ -75,6 +78,7 @@
     <td style='border-width:"50px";border-color:red;border:solid'>{{i.load}}</td>
     <td style='border-width:"50px";border-color:red;border:solid'>{{i.hnumber}}</td>
     <td style='border-width:"50px";border-color:red;border:solid'>{{i.des}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'><a href="http://127.0.0.1:8000/billingapp/condel/{{i.id}}"><button class="btn btn-danger">delete</button></a></td>
   </tr>
   {% endfor %}
 

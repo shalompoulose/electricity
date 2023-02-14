@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <style>
   th{
   border-width:"10px";
@@ -29,7 +31,8 @@
   <title>Title</title>
 </head>
 <body>
-<div class="vtbl">
+
+<div class="vtbl">  <h3 style="text-align:center;"><b>customer list</b></h3>
 {% include 'navbar.html' %}
 {% include 'msg.html' %}
 <table style='border-width:"50px";border:solid'>
@@ -45,6 +48,7 @@
     <th style='border-width:"50px";border-color:red;border:solid'>city</th>
     <th style='border-width:"50px";border-color:red;border:solid'>state</th>
     <th style='border-width:"50px";border-color:red;border:solid'>pin code</th>
+    <th style='border-width:"50px";border-color:red;border:solid'>ACTION</th>
   </tr>
   {% for i in a %}
   <tr>
@@ -59,12 +63,12 @@
     <td style='border-width:"50px";border-color:red;border:solid'>{{i.city}}</td>
     <td style='border-width:"50px";border-color:red;border:solid'>{{i.state}}</td>
     <td style='border-width:"50px";border-color:red;border:solid'>{{i.pin}}</td>
+    <td style='border-width:"50px";border-color:red;border:solid'><a href="http://127.0.0.1:8000/billingapp/regdel/{{i.id}}"><button class="btn btn-danger">delete</button></a></td>
   </tr>
   {% endfor %}
 
 </table>
 </div>
-
 
 </body>
 </html>

@@ -69,18 +69,18 @@
 
   <main id="main">
         <!-- ======= About Section ======= -->
-    {% for i in a %}
+    {% for a,b,c in s %}
+    {{a.id}}
     <section id="about" class="about">
       <div class="container">
         <div class="card" style="width: 18rem;float:left;margin-left:100px;">
-          <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
             <div class="container">
               <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                 <div class="card-body">
                   <h5 class="card-title">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end={{i.id}} data-purecounter-duration="1" class="purecounter"></span><br>
+                    <span data-purecounter-start="0" data-purecounter-end={{a.id}} data-purecounter-duration="1" class="purecounter"></span><br>
                   </h5><a href="http://127.0.0.1:8000/billingapp/cviews/" ><p><strong>TOTAL CUSTOMERS</strong></p></a>
                 </div>
               </div>
@@ -90,15 +90,15 @@
       </div>
       <div class="container">
         <div class="card" style="width: 18rem;float:left;margin-left:100px;">
-          <img src="..." class="card-img-top" alt="...">
+
           <div class="card-body">
             <div class="container">
               <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                 <div class="card-body">
                   <h5 class="card-title">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end={{i.id}} data-purecounter-duration="1" class="purecounter"></span><br>
-                  </h5><a href="http://127.0.0.1:8000/billingapp/cviews/" ><p><strong>TOTAL CONNECTIONS</strong></p></a>
+                    <span data-purecounter-start="0" data-purecounter-end={{b.id}} data-purecounter-duration="1" class="purecounter"></span><br>
+                  </h5><a href="http://127.0.0.1:8000/billingapp/conviews/" ><p><strong>TOTAL CONNECTIONS</strong></p></a>
                 </div>
               </div>
             </div>
@@ -108,15 +108,15 @@
 
       <div class="container">
         <div class="card" style="width: 18rem;float:left;margin-left:100px;">
-          <img src="..." class="card-img-top" alt="...">
+
           <div class="card-body">
             <div class="container">
               <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
                 <div class="card-body">
                   <h5 class="card-title">
                     <i class="bi bi-emoji-smile"></i>
-                    <span data-purecounter-start="0" data-purecounter-end={{i.id}} data-purecounter-duration="1" class="purecounter"></span><br>
-                  </h5><a href="http://127.0.0.1:8000/billingapp/cviews/"> <p><strong>TOTAL BILLS</strong></p></a>
+                    <span data-purecounter-start="0" data-purecounter-end={{c.id}} data-purecounter-duration="1" class="purecounter"></span><br>
+                  </h5><a href="http://127.0.0.1:8000/billingapp/billv/"> <p><strong>TOTAL BILLS</strong></p></a>
                 </div>
               </div>
             </div>

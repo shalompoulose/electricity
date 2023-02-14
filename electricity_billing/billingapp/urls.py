@@ -34,6 +34,8 @@ urlpatterns=[
     path('payment/<id>', payment),
     path('hbill/<id>', hbill),
     path('edpes/<id>',edpes),
+    path('regdel/<id>',regdel),
+    path('condel/<id>', condel),
     path('addconnect/<int:obj2>/',addconnect, name='addconnect'),
     path('cbillv/<int:id>/',cbillv, name='cbillv'),
     path('vcomp/<int:id>/', vcomp, name='vcomp'),

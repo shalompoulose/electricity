@@ -40,6 +40,7 @@ class feedb(models.Model):
 class Bill(models.Model):
     connmodel=models.ForeignKey(conmodel, on_delete=models.CASCADE)
     bmonth=models.CharField(max_length=50)
+    byear=models.CharField(max_length=30)
     cread=models.IntegerField()
     pread=models.IntegerField()
     tunit=models.IntegerField()

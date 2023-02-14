@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
+
+  <script type="text/javascript">
+    window.onload = function () {
+        var byear = document.getElementById("byear");
+
+
+        var c = (new Date()).getFullYear();
+
+        for (var i = 1950; i <= c; i++) {
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            byear.appendChild(option);
+        }
+    };
+    </script>
+    <script>
         function amt(){
         
         var a=(document.getElementById("tunit").value);
@@ -142,7 +158,7 @@ margin-top:100px;
 <!--          <option data-countryCode="GB" value="44">UK (+44)</option>-->
 <!--        </select>-->
 <!--      </div>-->
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-3 form-group">
             <label>bill month</label>
             <select class="form-control browser-default custom-select" name="bmonth" id="dropdown" onchange="checkselection()">
                 <option value=" " selected>...</option>
@@ -160,6 +176,10 @@ margin-top:100px;
                 <option value="december">december</option>
             </select>
         </div>
+          <div class="col-sm-3 form-group">
+            <label>year</label>
+              <select class="form-control" name="byear" id="byear" placeholder="bill year" required></select>
+          </div>
         <div class="col-sm-6 form-group">
             <label>current reading</label>
             <input type="number" class="form-control" name="cread" id="cread" placeholder="current reading" required>
